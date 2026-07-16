@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Footer from "../components/Footer";
 import Link from "next/link";
@@ -18,7 +18,7 @@ interface Property {
   area: number;
 }
 
-export default function BuyPage() {
+function BuyContent() {
   const [properties, setProperties] = useState<Property[]>([]);
   const searchParams = useSearchParams();
 
@@ -103,7 +103,8 @@ export default function BuyPage() {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
+
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-14">
           <h1 className="text-5xl font-bold">
@@ -117,7 +118,6 @@ export default function BuyPage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
           {filteredProperties.map((property) => (
             <div
               key={property.id}
@@ -160,15 +160,20 @@ export default function BuyPage() {
                 >
                   Delete Property
                 </button>
-
               </div>
             </div>
           ))}
-
         </div>
       </section>
 
       <Footer />
     </>
+  );
+}
+export default function BuyPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BuyContent />
+    </Suspense>
   );
 }
