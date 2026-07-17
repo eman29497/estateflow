@@ -27,7 +27,7 @@ export default function DashboardPage() {
     const token = localStorage.getItem("token");
 
     const response = await fetch(
-      "http://localhost:5000/api/inquiries",
+      `${process.env.NEXT_PUBLIC_API_URL}/inquiries`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -58,7 +58,7 @@ export default function DashboardPage() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/api/inquiries/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/inquiries/${id}`,
         {
           method: "DELETE",
           headers: {

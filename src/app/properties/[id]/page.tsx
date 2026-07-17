@@ -39,7 +39,7 @@ export default function PropertyDetailsPage() {
   const getProperty = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/properties/${id}`
+      `${process.env.NEXT_PUBLIC_API_URL}/properties/${id}`
       );
 
       const data = await response.json();
@@ -75,7 +75,7 @@ export default function PropertyDetailsPage() {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/inquiries",
+      `${process.env.NEXT_PUBLIC_API_URL}/inquiries`,
         {
           method: "POST",
           headers: {

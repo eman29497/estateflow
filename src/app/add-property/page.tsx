@@ -37,7 +37,7 @@ export default function AddPropertyPage() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5000/api/properties",
+      `${process.env.NEXT_PUBLIC_API_URL}/properties`,
         {
           method: "POST",
           headers: {

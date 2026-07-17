@@ -24,7 +24,7 @@ export default function RentPage() {
   const getRentProperties = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/properties"
+      `${process.env.NEXT_PUBLIC_API_URL}/properties`
       );
       const data = await response.json();
 
@@ -47,7 +47,7 @@ export default function RentPage() {
   try {
     const token = localStorage.getItem("token");
     const response = await fetch(
-      `http://localhost:5000/api/properties/${id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/properties/${id}`,
       {
         method: "DELETE",
         headers: {
