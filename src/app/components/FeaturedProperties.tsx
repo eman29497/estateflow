@@ -13,30 +13,36 @@ interface Property {
 
 export default function FeaturedProperties() {
   const [properties, setProperties] = useState<Property[]>([]);
+useEffect(() => {
+  getProperties();
+}, []);
 
-  useEffect(() => {
-    getProperties();
-  }, []);
-
-  const getProperties = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/properties`
-      );
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setProperties(data.properties);
-      } else {
-        alert(data.message);
+const getProperties = async () => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/properties`,
+      {
+        cache: "no-store",
       }
-    } catch (error) {
-      console.log(error);
-      alert("Something went wrong");
+    );
+
+    const data = await response.json();
+
+    console.log("Properties API:", data);
+
+    if (response.ok) {
+      setProperties(data.properties ?? []);
+    } else {
+      console.log(data);
+      alert(data.message);
     }
-  };
-  const deleteProperty = async (id: string) => {
+  } catch (error) {
+    console.error("Fetch Error:", error);
+    alert("Something went wrong");
+  }
+};
+
+const deleteProperty = async (id: string) => {
   const confirmDelete = window.confirm(
     "Are you sure you want to delete this property?"
   );
@@ -65,7 +71,7 @@ export default function FeaturedProperties() {
       alert(data.message);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     alert("Something went wrong");
   }
 };
@@ -79,7 +85,9 @@ export default function FeaturedProperties() {
     <h2 className="text-4xl font-bold mt-2">
       Discover Our Best Properties
     </h2>
-
+<p className="text-red-500 text-center mt-4">
+  Total Properties: {properties.length}
+</p>
     <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
       Browse our hand-picked premium properties available for
       buying and renting.
