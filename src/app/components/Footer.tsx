@@ -1,12 +1,9 @@
 import Link from "next/link";
-
 export default function Footer() {
   return (
     <footer className="bg-slate-900 text-white mt-20">
       <div className="w-full px-8 md:px-12 lg:px-20 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-
-          {/* Logo */}
           <div>
             <h2 className="text-3xl font-bold text-amber-500">
               EstateHub
@@ -32,8 +29,6 @@ export default function Footer() {
               </span>
             </div>
           </div>
-
-          {/* Quick Links */}
           <div>
             <h3 className="text-xl font-semibold mb-6">
               Quick Links
@@ -41,7 +36,7 @@ export default function Footer() {
 
             <ul className="space-y-4 text-gray-400">
               <li>
-                <Link href="/" className="hover:text-amber-500 duration-300">
+                <Link href="/home" className="hover:text-amber-500 duration-300">
                   Home
                 </Link>
               </li>
@@ -57,30 +52,27 @@ export default function Footer() {
 
               <li>
                 <Link
-                  href="/about"
+                  href="/agents"
                   className="hover:text-amber-500 duration-300"
                 >
-                  About
+                  Agents
                 </Link>
               </li>
 
               <li>
                 <Link
-                  href="/contact"
+                  href="/dashboard"
                   className="hover:text-amber-500 duration-300"
                 >
-                  Contact
+                  Dashboard
                 </Link>
               </li>
             </ul>
           </div>
-
-          {/* Services */}
           <div>
             <h3 className="text-xl font-semibold mb-6">
               Services
             </h3>
-
             <ul className="space-y-4 text-gray-400">
               <li>Buy Property</li>
               <li>Sell Property</li>
@@ -89,8 +81,6 @@ export default function Footer() {
               <li>Property Valuation</li>
             </ul>
           </div>
-
-          {/* Contact */}
           <div>
             <h3 className="text-xl font-semibold mb-6">
               Contact Us
